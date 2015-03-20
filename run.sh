@@ -21,8 +21,13 @@ sudo apt-get update
 echo 'Installing Unzip...'
 sudo apt-get install unzip -y
 
-echo 'Grabbing AWS CLI...'
-wget https://s3.amazonaws.com/aws-cli/awscli-bundle.zip
+if [ ! -n "$WERCKER_INSTALL_AWS_CLI_VERSION" ]; then
+  echo "Grabbing AWS CLI version $WERCKER_INSTALL_AWS_CLI_VERSION"
+  wget https://s3.amazonaws.com/aws-cli/awscli-bundle-$WERCKER_INSTALL_AWS_CLI_VERSION.zip -O awscli-bundle.zip
+else
+  echo "Grabbing AWS CLI latest version"
+  wget https://s3.amazonaws.com/aws-cli/awscli-bundle.zip -O awscli-bundle.zip
+fi
 unzip awscli-bundle.zip
 
 echo 'Installing AWS CLI...'
