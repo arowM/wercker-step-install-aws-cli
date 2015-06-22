@@ -1,16 +1,16 @@
 #!/bin/bash
 
-if [ ! -n "$WERCKER_INSTALL_AWS_CLI_KEY" ]; then
+if [ -n "$WERCKER_INSTALL_AWS_CLI_KEY" ]; then
 	error 'Please specify key property'
 	exit 1
 fi
 
-if [ ! -n "$WERCKER_INSTALL_AWS_CLI_SECRET" ]; then
+if [ -n "$WERCKER_INSTALL_AWS_CLI_SECRET" ]; then
   error 'Please specify secret property'
   exit 1
 fi
 
-if [ ! -n "$WERCKER_INSTALL_AWS_CLI_REGION" ]; then
+if [ -n "$WERCKER_INSTALL_AWS_CLI_REGION" ]; then
   echo '[WARN] No Region Specified'
 fi
 
